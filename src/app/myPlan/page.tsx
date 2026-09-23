@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Navbar = () => {
+const MyPlanPage = () => {
     return (
         <div>
-            
+            My Plan Page
         </div>
     );
 };
 
-export default Navbar;
+export default MyPlanPage;
