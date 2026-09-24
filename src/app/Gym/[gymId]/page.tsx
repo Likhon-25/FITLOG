@@ -1,13 +1,14 @@
 import { getAllGimData } from "@/lib/app";
 import { IGym } from "@/types/Gym.type";
 import Image from "next/image";
-import React from "react";
 import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
+import TodayPlanButton from "@/components/gymDetails/TodayPlanButton";
+import SaveLeterButton from "@/components/gymDetails/SaveLeterButton";
 
 interface IGymCardDetailProps {
   params: Promise<{
-    gymId: IGym[];
+    gymId: string;
   }>;
 }
 
@@ -19,14 +20,14 @@ const GymCardDetail = async ({ params }: IGymCardDetailProps) => {
 
   return (
     <main className="min-h-screen bg-[#0b0c0e] px-5 py-8 md:px-8 md:py-12">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-300">
         <div className="rounded-2xl border border-neutral-800 bg-[#15171d] p-3 md:p-4">
           <div className="grid overflow-hidden rounded-xl border border-neutral-800 bg-[#101216] lg:grid-cols-2">
             {/* Image */}
-            <div className="relative min-h-[400px] overflow-hidden lg:min-h-[620px]">
+            <div className="relative min-h-100 overflow-hidden lg:min-h-155">
               <Image
-                src={gData?.image || ""}
-                alt={gData?.name || "Workout"}
+                src={gData.image}
+                alt={gData.name}
                 fill
                 className="object-cover"
                 priority
@@ -152,13 +153,9 @@ const GymCardDetail = async ({ params }: IGymCardDetailProps) => {
 
               {/* Actions */}
               <div className="mt-7 flex flex-wrap gap-3">
-                <button className="rounded-md bg-lime-400 px-5 py-3 text-[10px] font-extrabold uppercase tracking-wide text-black transition hover:bg-lime-300">
-                  Add to today&apos;s plan
-                </button>
+                <TodayPlanButton gData={gData}/>
 
-                <button className="rounded-md border border-neutral-700 bg-transparent px-5 py-3 text-[10px] font-bold uppercase tracking-wide text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white">
-                  Save for later
-                </button>
+                <SaveLeterButton gData={gData}/>
               </div>
             </div>
           </div>

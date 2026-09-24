@@ -18,7 +18,7 @@ const HomeLibraryCard = ({ data }: IHomeLibraryProps) => {
           alt={data.name}
           width={200}
           height={90}
-          className="h-[350px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-87.5 w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
 
