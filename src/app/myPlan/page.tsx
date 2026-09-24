@@ -1,17 +1,19 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GymContext } from "@/components/context/GymContext";
 import PlanBooks from "@/components/shared/PlanBooks";
 import SaveBooks from "@/components/shared/SaveBooks";
 
 const MyPlanPage = () => {
   const { todayPlan, saveLeter } = useContext(GymContext);
-  const totalMinutes = todayPlan.reduce(
+  const [activeTab, setActiveTab] = useState<"today" | "saved">("saved");
+  const activePlans = activeTab === "today" ? todayPlan : saveLeter;
+  const totalMinutes = activePlans.reduce(
     (total, plan) => total + plan.duration,
     0,
   );
-  const totalCalories = todayPlan.reduce(
+  const totalCalories = activePlans.reduce(
     (total, plan) => total + plan.caloriesBurned,
     0,
   );
@@ -25,12 +27,12 @@ const MyPlanPage = () => {
         </p>
       </div>
 
-      {/* Details total */}
+      {/* total */}
       <div className="mb-8 grid grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-[#15171d] md:grid-cols-3">
         <div className="border-b border-neutral-800 px-6 py-5 md:border-b-0 md:border-r">
           <p className="text-sm text-[#8A92A0]">Exercises</p>
           <h3 className="mt-1 text-4xl font-black text-lime-400">
-            {todayPlan.length}
+            {activePlans.length}
           </h3>
         </div>
 
@@ -56,6 +58,8 @@ const MyPlanPage = () => {
           name="my_tabs_6"
           className="tab mb-4 rounded-lg px-6 text-sm font-semibold text-[#8A92A0] checked:bg-[#20232b] checked:text-white"
           aria-label="Today's Plan"
+          checked={activeTab === "today"}
+          onChange={() => setActiveTab("today")}
         />
 
         <div className="tab-content rounded-xl border border-neutral-800 bg-[#101216] p-5 text-center md:p-6">
@@ -87,7 +91,8 @@ const MyPlanPage = () => {
           name="my_tabs_6"
           className="tab rounded-lg px-6 text-sm font-semibold text-[#8A92A0] checked:bg-[#20232b] checked:text-white"
           aria-label="Saved"
-          defaultChecked
+          checked={activeTab === "saved"}
+          onChange={() => setActiveTab("saved")}
         />
 
         <div className="tab-content rounded-xl border border-neutral-800 bg-[#101216] p-5 text-center md:p-6">

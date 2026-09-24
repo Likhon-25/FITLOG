@@ -8,7 +8,7 @@ import { GymContext } from "@/components/context/GymContext";
 
 
 const link = <>
-      <li><Link href={"/workOuts"} className="text-white/80 hover:text-white px-4 py-2">Workouts</Link></li>
+      <li><Link href={"/"} className="text-white/80 hover:text-white px-4 py-2">Workouts</Link></li>
       <li><Link href={"/myPlan"} className="text-white/80 hover:text-white px-4 py-2">My Plan</Link></li>
 </>
 
