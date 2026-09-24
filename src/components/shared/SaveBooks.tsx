@@ -1,6 +1,8 @@
 import { IGym } from "@/types/Gym.type";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
+import { GymContext } from "@/components/context/GymContext";
 import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
@@ -10,6 +12,12 @@ interface ILaterBooks {
 }
 
 const SaveBooks = ({later} : ILaterBooks) => {
+    const { saveLeter, setSaveLeter } = useContext(GymContext);
+
+    const handleDelete = () => {
+      setSaveLeter(saveLeter.filter((item) => item.id !== later.id));
+    };
+
     return (
         <div className="group flex items-center justify-between gap-5 rounded-2xl border border-neutral-800 bg-[#15171d] p-4 transition-all duration-300 hover:border-neutral-700">
               {/* Left: Image + Content */}
@@ -60,7 +68,12 @@ const SaveBooks = ({later} : ILaterBooks) => {
                   View Details
                 </Link>
         
-                <button className="flex h-9 w-9 items-center justify-center rounded-full text-neutral-600 transition hover:bg-neutral-800 hover:text-red-400">
+                <button
+                  type="button"
+                  aria-label={`Remove ${later.name} from saved exercises`}
+                  onClick={handleDelete}
+                  className="flex h-9 w-9 items-center justify-center rounded-full text-neutral-600 transition hover:bg-neutral-800 hover:text-red-400"
+                >
                   <MdDeleteForever className="text-lg" />
                 </button>
               </div>
