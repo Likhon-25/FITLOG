@@ -1,5 +1,6 @@
 import { IGym } from "@/types/Gym.type";
 import Image from "next/image";
+import Link from "next/link";
 import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { IoCheckmark } from "react-icons/io5";
@@ -56,9 +57,9 @@ const PlanBooks = ({ plan }: IPlanBooks) => {
 
       {/* Right: Actions */}
       <div className="flex shrink-0 items-center gap-3">
-        <button className="rounded-full border border-neutral-700 px-5 py-2.5 text-xs font-medium text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white">
-          View Details
-        </button>
+        <Link href={`/Gym/${plan.id}`} className="rounded-full border border-neutral-700 px-5 py-2.5 text-xs font-medium text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white">
+          View Details    
+        </Link>
 
         <button className="flex items-center gap-1.5 rounded-full bg-lime-400 px-5 py-2.5 text-xs font-bold text-black transition hover:bg-lime-300">
           <IoCheckmark className="text-base" />

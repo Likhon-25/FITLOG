@@ -1,5 +1,6 @@
 import { IGym } from "@/types/Gym.type";
 import Image from "next/image";
+import Link from "next/link";
 import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
@@ -55,9 +56,9 @@ const SaveBooks = ({later} : ILaterBooks) => {
         
               {/* Right: Actions */}
               <div className="flex shrink-0 items-center gap-3">
-                <button className="rounded-full border border-neutral-700 px-5 py-2.5 text-xs font-medium text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white">
+                <Link  href={`/Gym/${later.id}`} className="rounded-full border border-neutral-700 px-5 py-2.5 text-xs font-medium text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white">
                   View Details
-                </button>
+                </Link>
         
                 <button className="flex h-9 w-9 items-center justify-center rounded-full text-neutral-600 transition hover:bg-neutral-800 hover:text-red-400">
                   <MdDeleteForever className="text-lg" />
