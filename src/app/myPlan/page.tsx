@@ -7,8 +7,48 @@ import SaveBooks from "@/components/shared/SaveBooks";
 
 const MyPlanPage = () => {
   const { todayPlan, saveLeter } = useContext(GymContext);
+  const totalMinutes = todayPlan.reduce(
+    (total, plan) => total + plan.duration,
+    0,
+  );
+  const totalCalories = todayPlan.reduce(
+    (total, plan) => total + plan.caloriesBurned,
+    0,
+  );
+
   return (
     <div className="container mx-auto my-10 px-4">
+      <div className="mt-15 mb-10">
+        <h2 className="text-4xl font-bold mb-2">MY PLAN</h2>
+        <p className="text-[#8A92A0]">
+          Cap of five lifts for today. Finish them, then load more.
+        </p>
+      </div>
+
+      {/* Details total */}
+      <div className="mb-8 grid grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-[#15171d] md:grid-cols-3">
+        <div className="border-b border-neutral-800 px-6 py-5 md:border-b-0 md:border-r">
+          <p className="text-sm text-[#8A92A0]">Exercises</p>
+          <h3 className="mt-1 text-4xl font-black text-lime-400">
+            {todayPlan.length}
+          </h3>
+        </div>
+
+        <div className="border-b border-neutral-800 px-6 py-5 md:border-b-0 md:border-r">
+          <p className="text-sm text-[#8A92A0]">Minutes</p>
+          <h3 className="mt-1 text-4xl font-black text-white">
+            {totalMinutes}
+          </h3>
+        </div>
+
+        <div className="px-6 py-5">
+          <p className="text-sm text-[#8A92A0]">Calories</p>
+          <h3 className="mt-1 text-4xl font-black text-white">
+            {totalCalories}
+          </h3>
+        </div>
+      </div>
+
       {/* name of each tab group should be unique */}
       <div className="tabs tabs-box rounded-xl border border-neutral-800 bg-[#15171d] p-1">
         <input
