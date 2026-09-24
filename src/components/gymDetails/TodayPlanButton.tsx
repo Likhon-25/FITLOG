@@ -3,14 +3,16 @@
 import { useContext } from "react";
 import { GymContext } from "../context/GymContext";
 import { IGym } from "@/types/Gym.type";
+import { toast } from "react-toastify";
 
-const TodayPlanButton = ({gData} : {gData: IGym}) => {
+const TodayPlanButton = ({ gData }: { gData: IGym }) => {
   const { todayPlan, setTodayPlan } = useContext(GymContext);
 
   const handleTodayBtn = () => {
     if (todayPlan.find((gym) => gym.id === gData.id)) return;
 
     setTodayPlan([...todayPlan, gData]);
+    toast.success(`Add Today Plan - ${gData.name}`);
   };
 
   return (

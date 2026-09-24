@@ -6,6 +6,7 @@ import { GymContext } from "@/components/context/GymContext";
 import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
 
 interface ILaterBooks {
   later: IGym;
@@ -16,6 +17,7 @@ const SaveBooks = ({later} : ILaterBooks) => {
 
     const handleDelete = () => {
       setSaveLeter(saveLeter.filter((item) => item.id !== later.id));
+      toast.error(`Remove Save books - ${later.name}`)
     };
 
     return (

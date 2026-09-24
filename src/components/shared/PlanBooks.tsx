@@ -7,6 +7,7 @@ import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import { IoCheckmark } from "react-icons/io5";
 import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
 
 interface IPlanBooks {
   plan: IGym;
@@ -17,6 +18,7 @@ const PlanBooks = ({ plan }: IPlanBooks) => {
 
   const handleDelete = () => {
     setTodayPlan(todayPlan.filter((item) => item.id !== plan.id));
+    toast.error(`Remove Today Plan - ${plan.name}`)
   };
 
   return (

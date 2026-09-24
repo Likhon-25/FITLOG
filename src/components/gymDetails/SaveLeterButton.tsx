@@ -3,6 +3,7 @@
 import { useContext } from "react";
 import { GymContext } from "../context/GymContext";
 import { IGym } from "@/types/Gym.type";
+import { toast } from "react-toastify";
 
 const SaveLeterButton = ({ gData }: { gData: IGym }) => {
   const { saveLeter, setSaveLeter } = useContext(GymContext);
@@ -11,6 +12,7 @@ const SaveLeterButton = ({ gData }: { gData: IGym }) => {
     if (saveLeter.find((gym) => gym.id === gData.id)) return;
 
     setSaveLeter( [...saveLeter, gData]);
+    toast.success(`Save For Leter - ${gData.name}`)
   };
 
 
