@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { GymContext } from "@/components/context/GymContext";
 import PlanBooks from "@/components/shared/PlanBooks";
 import SaveBooks from "@/components/shared/SaveBooks";
+import Link from "next/link";
 
 type SortOption = "" | "duration" | "rating" | "calories";
 
@@ -134,9 +135,9 @@ const MyPlanPage = () => {
                 Browse the library and add a lift to get today moving.
               </p>
 
-              <button className="rounded-full bg-lime-400 px-6 py-3 text-[10px] font-extrabold uppercase tracking-wide text-black transition hover:bg-lime-300">
+              <Link href={"/"} className=" btn rounded-full bg-lime-400 px-6 py-3 text-[10px] font-extrabold uppercase tracking-wide text-black transition hover:bg-lime-300">
                 Go to workouts
-              </button>
+              </Link>
             </div>
           )}
         </div>
