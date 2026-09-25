@@ -5,6 +5,7 @@ import { GymContext } from "@/components/context/GymContext";
 import PlanBooks from "@/components/shared/PlanBooks";
 import SaveBooks from "@/components/shared/SaveBooks";
 import Link from "next/link";
+import MetricsSummary from "@/components/shared/MetricsSummary";
 
 type SortOption = "" | "duration" | "rating" | "calories";
 
@@ -26,14 +27,6 @@ const MyPlanPage = () => {
         return secondPlan.caloriesBurned - firstPlan.caloriesBurned;
       })
     : activePlans;
-  const totalMinutes = activePlans.reduce(
-    (total, plan) => total + plan.duration,
-    0,
-  );
-  const totalCalories = activePlans.reduce(
-    (total, plan) => total + plan.caloriesBurned,
-    0,
-  );
 
   return (
     <div className="container mx-auto my-10 px-4">
@@ -44,29 +37,7 @@ const MyPlanPage = () => {
         </p>
       </div>
 
-      {/* total */}
-      <div className="mb-8 grid grid-cols-1 overflow-hidden rounded-2xl border border-neutral-800 bg-[#15171d] md:grid-cols-3">
-        <div className="border-b border-neutral-800 px-6 py-5 md:border-b-0 md:border-r">
-          <p className="text-sm text-[#8A92A0]">Exercises</p>
-          <h3 className="mt-1 text-4xl font-black text-lime-400">
-            {activePlans.length}
-          </h3>
-        </div>
-
-        <div className="border-b border-neutral-800 px-6 py-5 md:border-b-0 md:border-r">
-          <p className="text-sm text-[#8A92A0]">Minutes</p>
-          <h3 className="mt-1 text-4xl font-black text-white">
-            {totalMinutes}
-          </h3>
-        </div>
-
-        <div className="px-6 py-5">
-          <p className="text-sm text-[#8A92A0]">Calories</p>
-          <h3 className="mt-1 text-4xl font-black text-white">
-            {totalCalories}
-          </h3>
-        </div>
-      </div>
+      <MetricsSummary plans={activePlans} />
 
       <div className="rounded-xl border border-neutral-800 bg-[#15171d] p-1">
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -135,7 +106,10 @@ const MyPlanPage = () => {
                 Browse the library and add a lift to get today moving.
               </p>
 
-              <Link href={"/"} className=" btn rounded-full bg-lime-400 px-6 py-3 text-[10px] font-extrabold uppercase tracking-wide text-black transition hover:bg-lime-300">
+              <Link
+                href={"/"}
+                className=" btn rounded-full bg-lime-400 px-6 py-3 text-[10px] font-extrabold uppercase tracking-wide text-black transition hover:bg-lime-300"
+              >
                 Go to workouts
               </Link>
             </div>
