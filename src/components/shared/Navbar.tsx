@@ -45,7 +45,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar container mx-auto border-b border-neutral-800 bg-[#101216] px-5 py-4">
+    <div className="navbar container mx-auto border-b border-neutral-800 bg-[#000] px-5 py-4">
       {/* Logo */}
       <div className="navbar-start">
         <div className="dropdown">
