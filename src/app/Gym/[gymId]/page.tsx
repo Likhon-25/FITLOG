@@ -1,6 +1,7 @@
 import { getAllGimData } from "@/lib/app";
 import { IGym } from "@/types/Gym.type";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { CiStopwatch } from "react-icons/ci";
 import { FaFire, FaRegStar } from "react-icons/fa";
 import TodayPlanButton from "@/components/gymDetails/TodayPlanButton";
@@ -14,9 +15,15 @@ interface IGymCardDetailProps {
 
 const GymCardDetail = async ({ params }: IGymCardDetailProps) => {
   const { gymId } = await params;
-  const getdata = await getAllGimData();
+  const getdata = (await getAllGimData()) as IGym[];
 
   const gData = getdata.find((data: IGym) => String(data.id) === String(gymId));
+
+  if (!gData) {
+    notFound();
+  }
+
+  const instructions = gData.instructions ?? [];
 
   return (
     <main className="min-h-screen bg-[#0b0c0e] px-5 py-8 md:px-8 md:py-12">
@@ -136,9 +143,9 @@ const GymCardDetail = async ({ params }: IGymCardDetailProps) => {
                 </h2>
 
                 <div className="mt-4 space-y-3">
-                  {gData?.instructions?.map((instruction, index) => (
+                  {instructions.map((instruction: string, index: number) => (
                     <div
-                      key={instruction}
+                      key={`${instruction}-${index}`}
                       className="flex gap-3 text-xs leading-5 text-neutral-400"
                     >
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-800 text-[10px] font-bold text-lime-400">
@@ -153,9 +160,9 @@ const GymCardDetail = async ({ params }: IGymCardDetailProps) => {
 
               {/* Actions */}
               <div className="mt-7 flex flex-wrap gap-3">
-                <TodayPlanButton gData={gData}/>
+                <TodayPlanButton gData={gData} />
 
-                <SaveLeterButton gData={gData}/>
+                <SaveLeterButton gData={gData} />
               </div>
             </div>
           </div>

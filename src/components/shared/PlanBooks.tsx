@@ -14,11 +14,27 @@ interface IPlanBooks {
 }
 
 const PlanBooks = ({ plan }: IPlanBooks) => {
-  const { todayPlan, setTodayPlan } = useContext(GymContext);
+  const { todayPlan, setTodayPlan, donePlan, setDonePlan } = useContext(GymContext);
 
   const handleDelete = () => {
     setTodayPlan(todayPlan.filter((item) => item.id !== plan.id));
-    toast.error(`Remove Today Plan - ${plan.name}`)
+    toast.error(`Remove Today Plan - ${plan.name}`);
+  };
+
+  const handleMarkDone = () => {
+    setTodayPlan((currentPlans) =>
+      currentPlans.filter((item) => item.id !== plan.id)
+    );
+
+    setDonePlan((currentDone) => {
+      if (currentDone.some((item) => item.id === plan.id)) {
+        return currentDone;
+      }
+
+      return [...currentDone, plan];
+    });
+
+    toast.success(`Workout marked as done - ${plan.name}`);
   };
 
   return (
@@ -71,7 +87,11 @@ const PlanBooks = ({ plan }: IPlanBooks) => {
           View Details    
         </Link>
 
-        <button className="flex items-center gap-1.5 rounded-full bg-lime-400 px-5 py-2.5 text-xs font-bold text-black transition hover:bg-lime-300">
+        <button
+          type="button"
+          onClick={handleMarkDone}
+          className="flex items-center gap-1.5 rounded-full bg-lime-400 px-5 py-2.5 text-xs font-bold text-black transition hover:bg-lime-300"
+        >
           <IoCheckmark className="text-base" />
           Mark as Done
         </button>

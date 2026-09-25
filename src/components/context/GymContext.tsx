@@ -15,6 +15,8 @@ interface IGymContext {
   setTodayPlan: Dispatch<SetStateAction<IGym[]>>;
   saveLeter: IGym[];
   setSaveLeter: Dispatch<SetStateAction<IGym[]>>;
+  donePlan: IGym[];
+  setDonePlan: Dispatch<SetStateAction<IGym[]>>;
 }
 
 // export const GymContext = createContext<IGymContext | undefined>(undefined);
@@ -23,17 +25,22 @@ export const GymContext = createContext<IGymContext>({
   setTodayPlan: () => undefined,
   saveLeter: [],
   setSaveLeter: () => undefined,
+  donePlan: [],
+  setDonePlan: () => undefined,
 });
 
 const GymProvider = ({ children }: { children: ReactNode }) => {
   const [todayPlan, setTodayPlan] = useState<IGym[]>([]);
   const [saveLeter, setSaveLeter] = useState<IGym[]>([]);
+  const [donePlan, setDonePlan] = useState<IGym[]>([]);
 
   const shareData = {
     todayPlan,
     setTodayPlan,
     saveLeter,
     setSaveLeter,
+    donePlan,
+    setDonePlan,
   };
 
   return (
