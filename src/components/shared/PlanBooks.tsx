@@ -14,7 +14,8 @@ interface IPlanBooks {
 }
 
 const PlanBooks = ({ plan }: IPlanBooks) => {
-  const { todayPlan, setTodayPlan, donePlan, setDonePlan } = useContext(GymContext);
+  const { todayPlan, setTodayPlan, donePlan, setDonePlan } =
+    useContext(GymContext);
 
   const handleDelete = () => {
     setTodayPlan(todayPlan.filter((item) => item.id !== plan.id));
@@ -23,7 +24,7 @@ const PlanBooks = ({ plan }: IPlanBooks) => {
 
   const handleMarkDone = () => {
     setTodayPlan((currentPlans) =>
-      currentPlans.filter((item) => item.id !== plan.id)
+      currentPlans.filter((item) => item.id !== plan.id),
     );
 
     setDonePlan((currentDone) => {
@@ -58,9 +59,7 @@ const PlanBooks = ({ plan }: IPlanBooks) => {
             {plan.name}
           </h2>
 
-          <p className="mt-1 text-xs text-[#8A92A0]">
-            {plan.equipment}
-          </p>
+          <p className="mt-1 text-xs text-[#8A92A0]">{plan.equipment}</p>
 
           <div className="mt-3 flex items-center gap-4 text-xs text-[#8A92A0]">
             <div className="flex items-center gap-1.5">
@@ -83,8 +82,11 @@ const PlanBooks = ({ plan }: IPlanBooks) => {
 
       {/* Right: Actions */}
       <div className="flex shrink-0 items-center gap-3">
-        <Link href={`/Gym/${plan.id}`} className="rounded-full border border-neutral-700 px-5 py-2.5 text-xs font-medium text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white">
-          View Details    
+        <Link
+          href={`/Gym/${plan.id}`}
+          className="rounded-full border border-neutral-700 px-5 py-2.5 text-xs font-medium text-neutral-300 transition hover:border-neutral-500 hover:bg-neutral-800 hover:text-white"
+        >
+          View Details
         </Link>
 
         <button
