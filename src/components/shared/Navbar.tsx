@@ -1,35 +1,48 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import logo from "@/assets/logo.png";
 import Image from "next/image";
 import { useContext } from "react";
 import { GymContext } from "@/components/context/GymContext";
 
-const link = (
-  <>
-    <li>
-      <Link
-        href={"/"}
-        className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wide text-neutral-400 transition hover:bg-neutral-800 hover:text-white"
-      >
-        Workouts
-      </Link>
-    </li>
-
-    <li>
-      <Link
-        href={"/myPlan"}
-        className="rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wide text-neutral-400 transition hover:bg-neutral-800 hover:text-white"
-      >
-        My Plan
-      </Link>
-    </li>
-  </>
-);
-
 const Navbar = () => {
   const { todayPlan, saveLeter } = useContext(GymContext);
+  const pathname = usePathname();
+  const isMyPlanActive = pathname.startsWith("/myPlan");
+
+  const navigationLinks = (
+    <>
+      <li>
+        <Link
+          href="/"
+          className={`rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wide transition ${
+            !isMyPlanActive
+              ? "bg-lime-400 text-black"
+              : "text-neutral-400 hover:bg-neutral-800 hover:text-white"
+          }`}
+          aria-current={!isMyPlanActive ? "page" : undefined}
+        >
+          Workouts
+        </Link>
+      </li>
+
+      <li>
+        <Link
+          href="/myPlan"
+          className={`rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wide transition ${
+            isMyPlanActive
+              ? "bg-lime-400 text-black"
+              : "text-neutral-400 hover:bg-neutral-800 hover:text-white"
+          }`}
+          aria-current={isMyPlanActive ? "page" : undefined}
+        >
+          My Plan
+        </Link>
+      </li>
+    </>
+  );
 
   return (
     <div className="navbar container mx-auto border-b border-neutral-800 bg-[#101216] px-5 py-4">
@@ -62,16 +75,12 @@ const Navbar = () => {
             tabIndex={-1}
             className="menu menu-sm dropdown-content z-50 mt-3 w-52 rounded-xl border border-neutral-800 bg-[#15171d] p-2 shadow-2xl"
           >
-            {link}
+            {navigationLinks}
           </ul>
         </div>
 
         <div className="flex items-center gap-2">
-          <Image
-            src={logo}
-            alt="Nav Logo"
-            className="h-7 w-7 object-contain"
-          />
+          <Image src={logo} alt="Nav Logo" className="h-7 w-7 object-contain" />
 
           <Link
             href={"/"}
@@ -85,7 +94,7 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal items-center gap-1 px-1">
-          {link}
+          {navigationLinks}
         </ul>
       </div>
 
