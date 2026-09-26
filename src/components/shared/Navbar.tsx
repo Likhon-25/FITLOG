@@ -45,9 +45,9 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar container mx-auto border-b border-neutral-800 bg-[#000] px-5 py-4">
+    <div className="navbar container mx-auto border-b border-neutral-800 bg-black px-3 py-2 sm:px-5 sm:py-4">
       {/* Logo */}
-      <div className="navbar-start">
+      <div className="navbar-start min-w-0">
         <div className="dropdown">
           <div
             tabIndex={0}
@@ -79,12 +79,16 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Image src={logo} alt="Nav Logo" className="h-7 w-7 object-contain" />
+        <div className="flex min-w-0 items-center gap-1 sm:gap-2">
+          <Image
+            src={logo}
+            alt="Nav Logo"
+            className="h-5 w-5 shrink-0 object-contain sm:h-7 sm:w-7"
+          />
 
           <Link
             href={"/"}
-            className="px-1 text-sm font-extrabold tracking-[0.18em] text-white"
+            className="truncate px-1 text-xs font-extrabold tracking-widest text-white sm:text-sm sm:tracking-[0.18em]"
           >
             FIT<span className="text-lime-400">LOG</span>
           </Link>
@@ -99,25 +103,25 @@ const Navbar = () => {
       </div>
 
       {/* Plan / Saved */}
-      <div className="navbar-end gap-3 text-xs">
+      <div className="navbar-end gap-1.5 text-[11px] sm:gap-3 sm:text-xs">
         <Link
           href={"/myPlan"}
-          className="flex items-center gap-2 rounded-full border border-neutral-800 bg-[#15171d] px-3 py-2 transition hover:border-neutral-700"
+          className="flex items-center gap-1 rounded-full border border-neutral-800 bg-[#15171d] px-2 py-1.5 transition hover:border-neutral-700 sm:gap-2 sm:px-3 sm:py-2"
         >
           <span className="font-semibold text-neutral-400">Plan</span>
 
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-lime-400 px-1 text-[10px] font-extrabold text-black">
+          <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-lime-400 px-1 text-[9px] font-extrabold text-black sm:h-5 sm:min-w-5 sm:text-[10px]">
             {todayPlan.length}
           </span>
         </Link>
 
         <Link
           href={"/myPlan"}
-          className="flex items-center gap-2 rounded-full border border-neutral-800 bg-[#15171d] px-3 py-2 transition hover:border-neutral-700"
+          className="flex items-center gap-1 rounded-full border border-neutral-800 bg-[#15171d] px-2 py-1.5 transition hover:border-neutral-700 sm:gap-2 sm:px-3 sm:py-2"
         >
           <span className="font-semibold text-neutral-400">Saved</span>
 
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full border border-neutral-600 px-1 text-[10px] font-bold text-neutral-300">
+          <span className="flex h-4 min-w-4 items-center justify-center rounded-full border border-neutral-600 px-1 text-[9px] font-bold text-neutral-300 sm:h-5 sm:min-w-5 sm:text-[10px]">
             {saveLeter.length}
           </span>
         </Link>

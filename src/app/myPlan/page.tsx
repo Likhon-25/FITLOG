@@ -85,7 +85,7 @@ const MyPlanPage = () => {
           </label>
         </div>
 
-        <div className="mt-3 rounded-xl border border-neutral-800 bg-[#101216] p-5 text-center md:p-6">
+        <div className="mt-3 rounded-xl border border-neutral-800 bg-[#101216] p-3 text-center sm:p-5 md:p-6">
           {sortedPlans.length > 0 ? (
             <div className="space-y-4">
               {activeTab === "today"
